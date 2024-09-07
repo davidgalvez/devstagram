@@ -14,7 +14,7 @@ class PostController extends Controller
     }
     public function index(User $user)
     {
-        $posts=Post::where('user_id',$user->id)->paginate(4);
+        $posts=Post::where('user_id',$user->id)->paginate(8);
        
         $data=[
             "user" =>$user,
@@ -49,5 +49,10 @@ class PostController extends Controller
             'post'=>$post,
             'user'=>$user
         ]);
+    }
+
+    public function destroy(Post $post)
+    {
+        dd('Eliminando', $post->id);
     }
 }
