@@ -53,6 +53,11 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        dd('Eliminando', $post->id);
+        $this->authorize('delete', $post);
+
+        $post->delete();
+
+        return redirect()->route('post.index', auth()->user()->username);
+            
     }
 }
